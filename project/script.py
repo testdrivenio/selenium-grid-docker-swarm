@@ -15,14 +15,7 @@ def run_process(browser, page_number=1):
 
 
 if __name__ == '__main__':
-    try:
-        # get driver
-        browser = get_driver()
-        # scrape and crawl
-        data = run_process(browser, sys.argv[1])
-        # exit
-        browser.quit()
-        # output
-        print(data[0])
-    except Exception as e:
-        print(e)
+    browser = get_driver()
+    data = run_process(browser, sys.argv[1])
+    browser.quit()
+    print(f'Finished page {sys.argv[1]}')
