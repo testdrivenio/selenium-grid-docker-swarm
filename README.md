@@ -33,9 +33,9 @@ Check out the [blog post](https://testdriven.io/concurrent-web-scraping-with-sel
     (env)$ eval $(docker-machine env node-1)
     (env)$ NODE=$(docker service ps --format "{{.Node}}" selenium_hub)
     (env)$ for i in {1..8}; do {
-            python project/script.py ${i} $(docker-machine ip $NODE) &
-          };
-          done
+             python project/script.py ${i} $(docker-machine ip $NODE) &
+           };
+           done
     ```
 
 1. Bring down the resources:
