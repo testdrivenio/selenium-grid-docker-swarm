@@ -1,9 +1,9 @@
-version: '3.5'
+version: '3.7'
 
 services:
 
   hub:
-    image: selenium/hub:3.9.1
+    image: selenium/hub:3.141.59
     ports:
       - 4444:4444
     deploy:
@@ -14,7 +14,7 @@ services:
           - node.role == worker
 
   chrome:
-    image: selenium/node-chrome:3.9.1
+    image: selenium/node-chrome:3.141.59
     volumes:
       - /dev/urandom:/dev/random
     depends_on:

@@ -8,7 +8,7 @@ Check out the [blog post](https://testdriven.io/concurrent-web-scraping-with-sel
 
 1. Fork/Clone
 
-1. Create and activate a virtualenv
+1. Create and activate a virtual environment
 
 1. Install the requirements
 
@@ -17,27 +17,29 @@ Check out the [blog post](https://testdriven.io/concurrent-web-scraping-with-sel
 1. Add the token to your environment:
 
     ```sh
-    $ export DIGITAL_OCEAN_ACCESS_TOKEN=[your_token]
+    (env)$ export DIGITAL_OCEAN_ACCESS_TOKEN=[your_token]
     ```
 
 1. Spin up four droplets and deploy Docker Swarm:
 
     ```sh
-    $ sh project/create.sh
+    (env)$ sh project/create.sh
     ```
 
 1. Run the scraper:
 
     ```sh
-    $ NODE=$(docker service ps --format "{{.Node}}" selenium_hub)
-    $ for i in {1..8}; do {
-      python project/script.py ${i} $(docker-machine ip $NODE) &
-    };
-    done
+    (env)$ docker-machine env node-1
+    (env)$ eval $(docker-machine env node-1)
+    (env)$ NODE=$(docker service ps --format "{{.Node}}" selenium_hub)
+    (env)$ for i in {1..8}; do {
+            python project/script.py ${i} $(docker-machine ip $NODE) &
+          };
+          done
     ```
 
 1. Bring down the resources:
 
     ```sh
-    $ sh project/destroy.sh
+    (env)$ sh project/destroy.sh
     ```
