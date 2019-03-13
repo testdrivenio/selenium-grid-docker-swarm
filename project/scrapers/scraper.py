@@ -4,16 +4,19 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from bs4 import BeautifulSoup
 
 
-def get_driver():
+def get_driver(address):
     # initialize options
     options = webdriver.ChromeOptions()
     # pass in headless argument to options
     options.add_argument('--headless')
     # initialize driver
-    driver = webdriver.Chrome(chrome_options=options)
+    driver = webdriver.Remote(
+                command_executor=f'http://{address}:4444/wd/hub',
+                desired_capabilities=DesiredCapabilities.CHROME)
     return driver
 
 
