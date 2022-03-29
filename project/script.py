@@ -17,7 +17,7 @@ def run_process(rowser):
 
 
 if __name__ == '__main__':
-    browser = get_driver()
+    browser = get_driver(sys.argv[1])
     data = run_process(browser)
     print(data)
     browser.quit()
